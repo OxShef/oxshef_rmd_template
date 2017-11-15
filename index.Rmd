@@ -1,0 +1,109 @@
+---
+title: "OxShef: RMarkdown Template Site"
+output:
+  html_document:
+    toc_float: false
+---
+
+This is a template RMarkdown website for the OxShef project, please consider using this template if you are adding a new website to the project that will be written using RMarkdown files.
+
+Current websites in OxShef that use this template include:
+
+- [OxShef Charts](https://oxshef.github.io/oxshef_charts/): A guide to different visualisation options for visualising research data
+
+There is a more thorough overview of the features of this website template (and how to use it) in the [github readme](https://github.com/OxShef/oxshef_rmd_template). 
+
+<!--html_preserve-->
+
+<hr>
+
+<div class="row align-items-center">
+
+<div class="col-md-6 align-self-center">
+
+This website is designed using Bootstrap 3.0, if you review the index.Rmd file that generates this webpage you will notice the use of
+
+<br>
+<br>
+&lt;--html_preserve--&gt;
+<br>
+&lt;--/html_preserve--&gt;
+
+<br>
+<br>
+These tags allow native HTML to be parsed by the browser, note though that RMarkdown syntax like **this** will not work between these tags.
+
+<br>
+
+This text and the hexaognal choropleth on this are displayed within a bootstrap grid, on a wide screen they will display side-by-side and in a single column on narrow screens (i.e. mobile devices).
+
+</div>
+
+<div class="col-md-6 align-self-center">
+
+This choropleth is generated using R code.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library("tilegramsR")
+library("leaflet")
+library("sf")
+library("statesRcontiguous")
+library("tidyverse")
+
+states_info <- shp_all_us_states
+st_geometry(states_info) <- NULL
+
+
+NPR1to1 <- st_as_sf(NPR1to1) %>%
+  left_join(states_info, by = c("state" = "state.short.name"))
+
+palette_state_division <- colorFactor("Paired", unique(NPR1to1$state.division))
+
+leaflet(
+  NPR1to1,
+  options=leafletOptions(
+    crs = leafletCRS("L.CRS.Simple"),
+    minZoom = -3, maxZoom = -3,
+    dragging = FALSE, zoomControl = FALSE,
+    attributionControl = FALSE),
+  width = "300px",
+          height = "200px"
+  ) %>%
+  addPolygons(
+    weight=2,
+    color='#000000', group = 'states',
+    fillOpacity = 0.6, opacity = 1, fillColor= ~palette_state_division(state.division),
+    highlightOptions = highlightOptions(weight = 4),
+    label = ~paste0(state, " (", state.division, ")")
+    ) 
+```
+
+</div>
+</div>
+
+<hr>
+<!--/html_preserve-->
+
+OxShef is a collaboration between the [Interactive Data Network of University of Oxford](idn.it.ox.ac.uk) and [Research Software Engineering at University of Sheffield](http://rse.shef.ac.uk/)
+
+<!--html_preserve-->
+
+  <div class="row align-items-center">
+    
+    <div class="col-md-6 align-self-center">
+      <center>
+      <img style="max-width:340px" src="images/idn_logo.png"/>
+        </center>
+        </div>
+        
+        <div class="col-md-6 align-self-center">
+          <center>
+          <img style="max-width:340px" src="images/rse-sheffield_logo.png"/>
+            </center>
+            </div>
+            </div>
+
+<!--/html_preserve-->
+            
+
+
