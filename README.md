@@ -9,13 +9,18 @@ The OxShef collaboration covers many different technologies and it might not be 
 
 # Features of the site
 
-This template borrows heavily from the design of [rmarkdown.rstudio.com](rmarkdown.rstudio.com) and borrows 
+This template borrows heavily from the design of the [rmarkdown.rstudio.com](rmarkdown.rstudio.com) website, in order to use it effectively you must be aware of the following:
+
+1. Use the `_render-site.R` script to safely generate the website by knitting together all `.Rmd` files in the root directory of the project
+1. Modify `_site.yml` to change the globaly used CSS and which elements from `includes/` are automatically included in all pages
+1. `includes/` contains re-usable website elements as follows:
+    + Item 3a
+    + Item 3b
 
 
+# About OxShef
 
-This the GitHub repository for the [OxShef: Charts](http://oxshef.github.io/oxshef_charts) website which provides support and advice in designing interactive data visualisations as a means for researchers to communicate and dessiminate research outputs.
-
-This is a collaboration between University of Oxford and University of Sheffield.
+OxShef is a collaboration between the [Interactive Data Network of University of Oxford](idn.it.ox.ac.uk) and [Research Software Engineering at University of Sheffield](http://rse.shef.ac.uk/).
 
 # Copyright and License 
 
