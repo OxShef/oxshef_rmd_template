@@ -8,7 +8,7 @@
 	'use strict';
 
 	$.fn.firstVisitPopup = function (settings) {
-
+	  console.log("I got triggered")
 		var $body = $('body');
 		var $dialog = $(this);
 		var $blackout;
