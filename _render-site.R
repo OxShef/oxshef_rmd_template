@@ -22,3 +22,4 @@ invisible(lapply(setdiff(current_packages, base_r_packages), function(x) detach_
 rm(list = ls())
 rmarkdown::clean_site()
 rmarkdown::render_site(envir = new.env())
+unlink("README.html")
