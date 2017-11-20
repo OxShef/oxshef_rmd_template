@@ -3,6 +3,8 @@ title: "OxShef: RMarkdown Template Site"
 output:
   html_document:
     toc_float: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_institutional-support.html]
 ---
 
 This is a template RMarkdown website for the OxShef project, please consider using this template if you are adding a new website to the project that will be written using RMarkdown files.
@@ -13,35 +15,47 @@ Current websites in OxShef that use this template include:
 
 There is a more thorough overview of the features of this website template (and how to use it) in the [github readme](https://github.com/OxShef/oxshef_rmd_template). 
 
-<!--html_preserve-->
+<hr>
+
+# Site Features
+
+- Bootstrap 4.0: Bootstrap is an awesome framework for building responsively designed websites, i.e. content that *reflows* as the size of the browser window changes, beautifully supporting a wide range of mobile devices. The main utility of Bootstrap in this template is for laying out grids, an example of which you can see above.
+
+- includes/include_institutional-support.html: The purple alert at the top of this page contains links to institutional support for the service/tool described within the website itself, linking to idn_info.html and orda_info.html respectively. Note that this is optionall included in the YAML header as follows:
+
+```yaml
+output:
+  html_document:
+    toc_float: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_institutional-support.html]
+```
+
 
 <hr>
+
+
+# Bootstrap grid example
+
+
 
 <div class="row align-items-center">
 
 <div class="col-md-6 align-self-center">
 
-This website is designed using Bootstrap 3.0, if you review the index.Rmd file that generates this webpage you will notice the use of
+Note that HTML to can be included verbatim within the .Rmd files that generate each webpage, however the markdown engine does interpret content within HTML tags. This allows Markdown like this \*\*bold\*\* to be used to **embolden** text.
 
-<br>
-<br>
+To guaranantee that HTML is rendered without any *attempted magic* you can make use of these special comments around the html:
+
 &lt;--html_preserve--&gt;
-<br>
+
 &lt;--/html_preserve--&gt;
-
-<br>
-<br>
-These tags allow native HTML to be parsed by the browser, note though that RMarkdown syntax like **this** will not work between these tags.
-
-<br>
-
-This text and the hexaognal choropleth on this are displayed within a bootstrap grid, on a wide screen they will display side-by-side and in a single column on narrow screens (i.e. mobile devices).
 
 </div>
 
 <div class="col-md-6 align-self-center">
 
-This choropleth is generated using R code.
+This section of the site should appear either directly to the right or underneath the information about `html_preserve` tags, as it is in another column of the bootstrap grid. The choropleth you can see below this text was generated using `R` and the `leaflet` htmlwidget library:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library("tilegramsR")
@@ -82,7 +96,8 @@ leaflet(
 </div>
 
 <hr>
-<!--/html_preserve-->
+
+# About OxShef
 
 OxShef is a collaboration between the [Interactive Data Network of University of Oxford](idn.it.ox.ac.uk) and [Research Software Engineering at University of Sheffield](http://rse.shef.ac.uk/)
 
