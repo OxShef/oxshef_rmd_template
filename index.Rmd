@@ -96,29 +96,3 @@ leaflet(
 </div>
 
 <hr>
-
-# About OxShef
-
-OxShef is a collaboration between the [Interactive Data Network of University of Oxford](idn.it.ox.ac.uk) and [Research Software Engineering at University of Sheffield](http://rse.shef.ac.uk/)
-
-<!--html_preserve-->
-
-  <div class="row align-items-center">
-    
-    <div class="col-md-6 align-self-center">
-      <center>
-      <img style="max-width:340px" src="images/idn_logo.png"/>
-        </center>
-        </div>
-        
-        <div class="col-md-6 align-self-center">
-          <center>
-          <img style="max-width:340px" src="images/rse-sheffield_logo.png"/>
-            </center>
-            </div>
-            </div>
-
-<!--/html_preserve-->
-            
-
-
