@@ -24,7 +24,7 @@ This template borrows heavily from the design of the [rmarkdown.rstudio.com](rma
 
 # About OxShef
 
-OxShef is a collaboration between the [Interactive Data Network of University of Oxford](idn.it.ox.ac.uk) and [Research Software Engineering at University of Sheffield](http://rse.shef.ac.uk/).
+OxShef is a collaboration between the [University of Oxford](idn.it.ox.ac.uk) and [University of Sheffield](http://rse.shef.ac.uk/).
 
 # Copyright and License 
 
