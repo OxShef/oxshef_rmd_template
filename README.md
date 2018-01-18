@@ -12,7 +12,22 @@ The OxShef collaboration covers many different technologies and it might not be 
 
 Current websites in OxShef that use this template include:
 
-- [OxShef Charts](https://oxshef.github.io/oxshef_charts/): A guide to different visualisation options for visualising research data
+-   [OxShef Charts](https://oxshef.github.io/oxshef_charts/): A guide to different visualisation options for visualising research data
+
+At the last full-build of the template the following R packages were required to build this package:
+
+``` r
+library("tidyverse")
+list.files(pattern = "Rmd", recursive = TRUE) %>%
+  map(., ~readLines(.x, warn = FALSE)) %>%
+  paste(collapse = "") %>%
+  str_extract_all("library\\([^()]+\\)") %>%
+  str_extract_all("\\([^()]+\\)") %>%
+  .[[1]] %>%
+  gsub("[^[:alnum:].]", "", .) %>%
+  unique()
+#> [1] "highcharter" "tidyverse"   "gapminder"
+```
 
 Features of the site
 ====================
