@@ -1,4 +1,5 @@
 output_dir: '.'
+exclude: ["README.Rmd"]
 output:
   html_document:
     theme: cosmo
