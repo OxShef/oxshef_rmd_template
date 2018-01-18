@@ -55,44 +55,30 @@ To guaranantee that HTML is rendered without any *attempted magic* you can make 
 
 <div class="col-md-6 align-self-center">
 
-This section of the site should appear either directly to the right or underneath the information about `html_preserve` tags, as it is in another column of the bootstrap grid. The choropleth you can see below this text was generated using `R` and the `leaflet` htmlwidget library:
+This section of the site should appear either directly to the right or underneath the information about `html_preserve` tags, as it is in another column of the bootstrap grid. The barchart below is generated using the `highcharter` library:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-library("tilegramsR")
-library("leaflet")
-library("sf")
-library("statesRcontiguous")
 library("tidyverse")
+library("highcharter")
 
-states_info <- shp_all_us_states
-st_geometry(states_info) <- NULL
-
-
-NPR1to1 <- st_as_sf(NPR1to1) %>%
-  left_join(states_info, by = c("state" = "state.short.name"))
-
-palette_state_division <- colorFactor("Paired", unique(NPR1to1$state.division))
-
-leaflet(
-  NPR1to1,
-  options=leafletOptions(
-    crs = leafletCRS("L.CRS.Simple"),
-    minZoom = -3, maxZoom = -3,
-    dragging = FALSE, zoomControl = FALSE,
-    attributionControl = FALSE),
-  width = "300px",
-          height = "200px"
+starwars %>%
+  filter(!is.na(species)) %>%
+  group_by(species) %>%
+  summarise(median.height = median(height, na.rm = TRUE)) %>%
+  arrange(desc(median.height)) %>%
+  mutate(species = fct_reorder(species, median.height)) %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = species,
+      y = median.height
+    )
   ) %>%
-  addPolygons(
-    weight=2,
-    color='#000000', group = 'states',
-    fillOpacity = 0.6, opacity = 1, fillColor= ~palette_state_division(state.division),
-    highlightOptions = highlightOptions(weight = 4),
-    label = ~paste0(state, " (", state.division, ")")
-    ) 
+  hc_title(text = "Median height of species from dplyr::starwars") %>%
+  hc_yAxis(title = list(text = "Median height (cm)"))
+
 ```
 
 </div>
-</div>
-
 <hr>
+</div>
