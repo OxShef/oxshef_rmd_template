@@ -12,7 +12,6 @@ detach_package <- function(pkg, character.only = FALSE)
            character.only = TRUE)
   }
 }
-library(tidyverse)
 
 current_packages <- .packages()
 base_r_packages <- c("stats", "graphics", "grDevices", "utils", "datasets", "methods", "base")
